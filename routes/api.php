@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EmergencyCaseController;
 use App\Http\Controllers\EmergencyNumController;
 use App\Http\Controllers\HomeARController;
 use App\Http\Controllers\HomeController;
@@ -85,6 +86,10 @@ Route::get('/getPetsCaseByIDAR', [PetARController::class, 'getPetsCaseByIDAR']);
 Route::get('/getPetsCaseByNameAR', [PetARController::class, 'getPetsCaseByNameAR']);
 Route::put('/updatePetsCaseAR', [PetARController::class, 'updatePetsCaseAR']);
 Route::delete('/deletePetsCaseAR', [PetARController::class, 'deletePetsCaseAR']);
+
+// route for get case by name in english & arabic
+Route::get('/getCaseByName', [EmergencyCaseController::class, 'getCaseByName']);
+Route::get('/getCaseByNameAR', [EmergencyCaseController::class, 'getCaseByNameAR']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
