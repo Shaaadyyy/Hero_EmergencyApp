@@ -110,22 +110,36 @@ class MedicalController extends Controller
             return $this->returnError('003', 'Category ID can not be assigned properly, Please check if the category of the new case is exist');
         }
 
-        $imageName = $this->uploadImage($request);
+        $exist = Medical::where('caseName', $medicalCase_name)->first();
+        if($exist)
+        {
+            return $this->returnError('002', 'Medical case already exists');
+        }
+        else
+        {
 
-        $videoName = $this->uploadVideo($request);
+            $check = Medical::where('case_id', $caseID)->first();
+            if($check)
+                return $this->returnError('505', 'You can\'t assign this case id, It\'s assigned to another case');
 
-        $medical =  Medical::create([
-            'caseName' => $medicalCase_name,
-            'description' => $request->description,
-            'category_id' => $category_id,
-            'category' => 'Medical',
-            'caseImg' => $imageName,
-            'caseVideo' => $videoName,
-            'solution' => $request->solution,
-            'case_id' => $caseID
-        ]);
+            $imageName = $this->uploadImage($request);
 
-        return $this->returnSuccessMessage('S000', 'Medical case is added successfully');
+            $videoName = $this->uploadVideo($request);
+
+            $medical =  Medical::create([
+                'caseName' => $medicalCase_name,
+                'description' => $request->description,
+                'category_id' => $category_id,
+                'category' => 'Medical',
+                'caseImg' => $imageName,
+                'caseVideo' => $videoName,
+                'solution' => $request->solution,
+                'case_id' => $caseID
+            ]);
+
+            return $this->returnSuccessMessage('S000', 'Medical case is added successfully');
+        }
+
 
     }
 

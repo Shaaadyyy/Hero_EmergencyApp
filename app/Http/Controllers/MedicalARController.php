@@ -120,22 +120,31 @@ class MedicalARController extends Controller
             return $this->returnError('404', 'Medical ID can not be assigned properly, Please check if the english medical case which is equivalent to the new arabic case is exist');
         }
 
-        $imageName = $this->uploadImage($request);
+        $exist = Medical_AR::where('caseName', $medicalCase_name)->first();
+        if($exist)
+        {
+            return $this->returnError('002', 'Medical case already exists');
+        }
+        else
+        {
+            $imageName = $this->uploadImage($request);
 
-        $videoName = $this->uploadVideo($request);
+            $videoName = $this->uploadVideo($request);
 
-        $medical =  Medical_AR::create([
-            'caseName' => $medicalCase_name,
-            'description' => $request->description,
-            'category_id' => $category_id,
-            'category' => 'Medical',
-            'caseImg' => $imageName,
-            'caseVideo' => $videoName,
-            'solution' => $request->solution,
-            'medical_id' => $medical_id
-        ]);
+            $medical =  Medical_AR::create([
+                'caseName' => $medicalCase_name,
+                'description' => $request->description,
+                'category_id' => $category_id,
+                'category' => 'Medical',
+                'caseImg' => $imageName,
+                'caseVideo' => $videoName,
+                'solution' => $request->solution,
+                'medical_id' => $medical_id
+            ]);
 
-        return $this->returnSuccessMessage('S000', 'Medical case is added successfully');
+            return $this->returnSuccessMessage('S000', 'Medical case is added successfully');
+        }
+
     }
 
     public function updateMedicalCaseAR(Request $request)

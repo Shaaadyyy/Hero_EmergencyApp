@@ -120,20 +120,28 @@ class HomeARController extends Controller
             return $this->returnError('404', 'Home ID can not be assigned properly, Please check if the english home case which is equivalent to the new arabic case is exist');
         }
 
-        $imageName = $this->uploadImage($request);
+        $exist = Home_AR::where('caseName', $homeCase_name)->first();
 
-        $home =  Home_AR::create([
-            'caseName' => $homeCase_name,
-            'description' => $request->description,
-            'category_id' => $category_id,
-            'caseImg' => $imageName,
-            'caseVideo' => '',
-            'category' => 'Home',
-            'solution' => $request->solution,
-            'home_id' => $home_id
-        ]);
+        if($exist)
+        {
+            return $this->returnError('002', 'Home case already exists');
+        } else
+        {
+            $imageName = $this->uploadImage($request);
 
-        return $this->returnSuccessMessage('S000', 'Home case is added successfully');
+            $home =  Home_AR::create([
+                'caseName' => $homeCase_name,
+                'description' => $request->description,
+                'category_id' => $category_id,
+                'caseImg' => $imageName,
+                'caseVideo' => '',
+                'category' => 'Home',
+                'solution' => $request->solution,
+                'home_id' => $home_id
+            ]);
+
+            return $this->returnSuccessMessage('S000', 'Home case is added successfully');
+        }
 
     }
 

@@ -40,11 +40,18 @@ class EmergencyNumController extends Controller
         $emerg_name = strtolower($emerg_name);
         $emerg_name = ucwords($emerg_name);
 
-        EmergencyNum::create([
-            'name' => $emerg_name,
-            'number' => $request->number
-        ]);
-        return $this->returnSuccessMessage('S000', 'Emergency number added');
+        $exist = EmergencyNum::where('caseName', $emerg_name)->first();
+        if($exist)
+        {
+            return $this->returnError('002', 'Emergency number already exists');
+        } else
+        {
+            EmergencyNum::create([
+                'name' => $emerg_name,
+                'number' => $request->number
+            ]);
+            return $this->returnSuccessMessage('S000', 'Emergency number added');
+        }
     }
 
     public function getEmergencyNumByID(Request $request)

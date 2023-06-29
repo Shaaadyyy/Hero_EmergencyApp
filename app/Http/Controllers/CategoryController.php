@@ -39,10 +39,18 @@ class CategoryController extends Controller
         $category_name = strtolower($category_name);
         $category_name = ucwords($category_name);
 
-        Category::create([
-            'category_name' => $category_name
-        ]);
-        return $this->returnSuccessMessage('S000', 'Category is added successfully');
+        $exist = Category::where('category_name', $category_name)->first();
+
+        if($exist)
+        {
+            return $this->returnError('002', 'Home case already exists');
+        } else
+        {
+            Category::create([
+                'category_name' => $category_name
+            ]);
+            return $this->returnSuccessMessage('S000', 'Category is added successfully');
+        }
 
     }
 

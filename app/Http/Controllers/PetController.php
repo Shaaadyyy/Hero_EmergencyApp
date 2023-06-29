@@ -110,19 +110,30 @@ class PetController extends Controller
             return $this->returnError('003', 'Category ID can not be assigned properly, Please check if the category of the new case is exist');
         }
 
-        $imageName = $this->uploadImage($request);
+        $exist = Pet::where('caseName', $petsCase_name)->first();
+        if($exist)
+        {
+            return $this->returnError('002', 'Pets case already exists');
+        } else
+        {
+            $check = Pet::where('case_id', $caseID)->first();
+            if($check)
+                return $this->returnError('505', 'You can\'t assign this case id, It\'s assigned to another case');
 
-        $pet =  Pet::create([
-            'caseName' => $petsCase_name,
-            'description' => $request->description,
-            'category_id' => $category_id,
-            'category' => 'Pets',
-            'caseImg' => $imageName,
-            'caseVideo' => '',
-            'solution' => $request->solution,
-            'case_id' => $caseID
-        ]);
-        return $this->returnSuccessMessage('S000', 'Pets case is added successfully');
+            $imageName = $this->uploadImage($request);
+
+            $pet =  Pet::create([
+                'caseName' => $petsCase_name,
+                'description' => $request->description,
+                'category_id' => $category_id,
+                'category' => 'Pets',
+                'caseImg' => $imageName,
+                'caseVideo' => '',
+                'solution' => $request->solution,
+                'case_id' => $caseID
+            ]);
+            return $this->returnSuccessMessage('S000', 'Pets case is added successfully');
+        }
 
     }
 

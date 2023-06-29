@@ -130,20 +130,32 @@ class HomeController extends Controller
             return $this->returnError('003', 'Category ID can not be assigned properly, Please check if the category of the new case is exist');
         }
 
-        $imageName = $this->uploadImage($request);
+        $exist = Home::where('caseName', $homeCase_name)->first();
 
-        $home =  Home::create([
-            'caseName' => $homeCase_name,
-            'description' => $request->description,
-            'category_id' => $category_id,
-            'caseImg' => $imageName,
-            'caseVideo' => '',
-            'category' => 'Home',
-            'solution' => $request->solution,
-            'case_id' => $caseID
-        ]);
+        if($exist)
+        {
+            return $this->returnError('002', 'Home case already exists');
+        } else
+        {
+            $check = Home::where('case_id', $caseID)->first();
+            if($check)
+                return $this->returnError('505', 'You can\'t assign this case id, It\'s assigned to another case');
 
-        return $this->returnSuccessMessage('S000', 'Home case is added successfully');
+            $imageName = $this->uploadImage($request);
+
+            $home =  Home::create([
+                'caseName' => $homeCase_name,
+                'description' => $request->description,
+                'category_id' => $category_id,
+                'caseImg' => $imageName,
+                'caseVideo' => '',
+                'category' => 'Home',
+                'solution' => $request->solution,
+                'case_id' => $caseID
+            ]);
+
+            return $this->returnSuccessMessage('S000', 'Home case is added successfully');
+        }
 
     }
 

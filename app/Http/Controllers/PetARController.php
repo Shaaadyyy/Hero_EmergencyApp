@@ -120,19 +120,26 @@ class PetARController extends Controller
             return $this->returnError('404', 'Pets ID can not be assigned properly, Please check if the english pets case which is equivalent to the new arabic case is exist');
         }
 
-        $imageName = $this->uploadImage($request);
+        $exist = Pet_AR::where('caseName', $petsCase_name)->first();
+        if($exist)
+        {
+            return $this->returnError('002', 'Pets case already exists');
+        } else
+        {
+            $imageName = $this->uploadImage($request);
 
-        $pet =  Pet_AR::create([
-            'caseName' => $petsCase_name,
-            'description' => $request->description,
-            'category_id' => $category_id,
-            'category' => 'Pets',
-            'caseImg' => $imageName,
-            'caseVideo' => '',
-            'solution' => $request->solution,
-            'pet_id' => $pets_id
-        ]);
-        return $this->returnSuccessMessage('S000', 'Pets case is added successfully');
+            $pet =  Pet_AR::create([
+                'caseName' => $petsCase_name,
+                'description' => $request->description,
+                'category_id' => $category_id,
+                'category' => 'Pets',
+                'caseImg' => $imageName,
+                'caseVideo' => '',
+                'solution' => $request->solution,
+                'pet_id' => $pets_id
+            ]);
+            return $this->returnSuccessMessage('S000', 'Pets case is added successfully');
+        }
 
     }
 
