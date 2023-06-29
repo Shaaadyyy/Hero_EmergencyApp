@@ -85,12 +85,12 @@ class HomeController extends Controller
         }
         else
         {
-//            $arabicCase = $case->home_ar;
-//
-//            if(!$arabicCase)
-//                return $this->returnError('001', 'Arabic home case is not found');
-//
-//            $arabicCase->delete();
+            $arabicCase = $case->home_ar;
+
+            if(!$arabicCase)
+                return $this->returnError('001', 'Arabic home case is not found');
+
+            $arabicCase->delete();
             Home::destroy($case->id);
             return $this->returnSuccessMessage( 'S000','Home case deleted successfully');
         }
