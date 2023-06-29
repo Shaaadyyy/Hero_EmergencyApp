@@ -40,6 +40,7 @@ class EmergencyCaseController extends Controller
         return $this->returnData('emergencyCases', $arr, 'Emergency cases are found');
     }
 
+
     public function getCaseByNameAR(Request $request)
     {
         $arr = array();
