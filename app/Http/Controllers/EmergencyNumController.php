@@ -26,7 +26,7 @@ class EmergencyNumController extends Controller
     public function addEmergencyNum(Request $request)
     {
         $rules = [
-            'name' => 'required|unique:emergency_nums,name',
+            'name' => 'required',
             'number' => 'required|numeric'
         ];
         $validator = Validator::make($request->all(), $rules);
