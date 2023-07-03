@@ -43,7 +43,7 @@ class CategoryController extends Controller
 
         if($exist)
         {
-            return $this->returnError('002', 'Home case already exists');
+            return $this->returnError('002', 'Category already exists');
         } else
         {
             Category::create([
