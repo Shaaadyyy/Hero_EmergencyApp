@@ -37,6 +37,9 @@ class EmergencyCaseController extends Controller
             array_push($arr, $exist3);
         }
 
+        if(empty($arr))
+            return $this->returnData('emergencyCases', $arr, 'No emergency case found');
+
         return $this->returnData('emergencyCases', $arr, 'Emergency cases are found');
     }
 
@@ -61,6 +64,9 @@ class EmergencyCaseController extends Controller
         {
             array_push($arr, $exist3);
         }
+
+        if(empty($arr))
+            return $this->returnData('emergencyCases', $arr, 'No emergency case found');
 
         return $this->returnData('emergencyCases', $arr, 'Emergency cases are found');
     }
