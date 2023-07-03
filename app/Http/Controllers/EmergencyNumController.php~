@@ -40,7 +40,7 @@ class EmergencyNumController extends Controller
         $emerg_name = strtolower($emerg_name);
         $emerg_name = ucwords($emerg_name);
 
-        $exist = EmergencyNum::where('name', $emerg_name)->first();
+        $exist = EmergencyNum::where('caseName', $emerg_name)->first();
         if($exist)
         {
             return $this->returnError('002', 'Emergency number already exists');
