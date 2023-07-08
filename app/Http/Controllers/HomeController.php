@@ -39,42 +39,6 @@ class HomeController extends Controller
         }
     }
 
-    public function getHomeCaseByName(Request $request)
-    {
-//        $case = $request->homeCase_name;
-//        $case_lowercase = strtolower($case);
-//        $caseName = ucwords($case_lowercase);
-//        $exist = Home::where('caseName', $caseName)->first();
-//        if($exist)
-//        {
-//            $arr = array($exist);
-//            return $this->returnData('emergencyCases', $arr, 'Home case is found');
-//        } else
-//        {
-//            return $this->returnError('001', 'Home case is not found');
-//        }
-
-        $case = $request->homeCase_name;
-        $case_lowercase = strtolower($case);
-        $caseName = ucwords($case_lowercase);
-        $englishHomeCase = Home::where('caseName', $caseName)->first();
-        if($englishHomeCase)
-        {
-            $lang = strtoupper($request->lang);
-            if($lang == 'EN')
-            {
-                return $englishHomeCase;
-            }
-            elseif ($lang == 'AR')
-            {
-                return $englishHomeCase->home_ar;
-            }
-        }
-        else
-            return $this->returnError('001', 'Home case is not found');
-
-    }
-
     public function deleteHomeCase(Request $request)
     {
         $case = Home::find($request->id);

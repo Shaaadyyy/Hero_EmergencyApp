@@ -40,21 +40,6 @@ class MedicalARController extends Controller
         }
     }
 
-    public function getMedicalCaseByNameAR(Request $request)
-    {
-        $caseName = $request->medicalCase_name;
-
-        $exist = Medical_AR::where('caseName', $caseName)->first();
-        if($exist)
-        {
-            $arr = array($exist);
-            return $this->returnData('emergencyCases', $arr, 'Medical case is found');
-        } else
-        {
-            return $this->returnError('001', 'Medical case is not found');
-        }
-    }
-
     public function deleteMedicalCaseAR(Request $request)
     {
         $case = Medical_AR::find($request->id);

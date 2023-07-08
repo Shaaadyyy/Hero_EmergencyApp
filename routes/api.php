@@ -43,7 +43,6 @@ Route::delete('/deleteCategory', [CategoryController::class, 'deleteCategory']);
 Route::get('/listAllMedicalCases', [MedicalController::class, 'listAllMedicalCases']);
 Route::post('/addMedicalCase', [MedicalController::class, 'addMedicalCase']);
 Route::get('/getMedicalCaseByID', [MedicalController::class, 'getMedicalCaseByID']);
-Route::get('/getMedicalCaseByName', [MedicalController::class, 'getMedicalCaseByName']);
 Route::put('/updateMedicalCase', [MedicalController::class, 'updateMedicalCase']);
 Route::delete('/deleteMedicalCase', [MedicalController::class, 'deleteMedicalCase']);
 
@@ -51,7 +50,6 @@ Route::delete('/deleteMedicalCase', [MedicalController::class, 'deleteMedicalCas
 Route::get('/listAllMedicalCasesAR', [MedicalARController::class, 'listAllMedicalCasesAR']);
 Route::post('/addMedicalCaseAR', [MedicalARController::class, 'addMedicalCaseAR']);
 Route::get('/getMedicalCaseByIDAR', [MedicalARController::class, 'getMedicalCaseByIDAR']);
-Route::get('/getMedicalCaseByNameAR', [MedicalARController::class, 'getMedicalCaseByNameAR']);
 Route::put('/updateMedicalCaseAR', [MedicalARController::class, 'updateMedicalCaseAR']);
 Route::delete('/deleteMedicalCaseAR', [MedicalARController::class, 'deleteMedicalCaseAR']);
 
@@ -59,7 +57,6 @@ Route::delete('/deleteMedicalCaseAR', [MedicalARController::class, 'deleteMedica
 Route::get('/listAllHomeCases', [HomeController::class, 'listAllHomeCases']);
 Route::post('/addHomeCase', [HomeController::class, 'addHomeCase']);
 Route::get('/getHomeCaseByID', [HomeController::class, 'getHomeCaseByID']);
-Route::get('/getHomeCaseByName', [HomeController::class, 'getHomeCaseByName']);
 Route::put('/updateHomeCase', [HomeController::class, 'updateHomeCase']);
 Route::delete('/deleteHomeCase', [HomeController::class, 'deleteHomeCase']);
 
@@ -67,7 +64,6 @@ Route::delete('/deleteHomeCase', [HomeController::class, 'deleteHomeCase']);
 Route::get('/listAllHomeCasesAR', [HomeARController::class, 'listAllHomeCasesAR']);
 Route::post('/addHomeCaseAR', [HomeARController::class, 'addHomeCaseAR']);
 Route::get('/getHomeCaseByIDAR', [HomeARController::class, 'getHomeCaseByIDAR']);
-Route::get('/getHomeCaseByNameAR', [HomeARController::class, 'getHomeCaseByNameAR']);
 Route::put('/updateHomeCaseAR', [HomeARController::class, 'updateHomeCaseAR']);
 Route::delete('/deleteHomeCaseAR', [HomeARController::class, 'deleteHomeCaseAR']);
 
@@ -75,7 +71,6 @@ Route::delete('/deleteHomeCaseAR', [HomeARController::class, 'deleteHomeCaseAR']
 Route::get('/listAllPetsCases', [PetController::class, 'ListAllPetsCases']);
 Route::post('/addPetsCase', [PetController::class, 'addPetsCase']);
 Route::get('/getPetsCaseByID', [PetController::class, 'getPetsCaseByID']);
-Route::get('/getPetsCaseByName', [PetController::class, 'getPetsCaseByName']);
 Route::put('/updatePetsCase', [PetController::class, 'updatePetsCase']);
 Route::delete('/deletePetsCase', [PetController::class, 'deletePetsCase']);
 
@@ -83,7 +78,6 @@ Route::delete('/deletePetsCase', [PetController::class, 'deletePetsCase']);
 Route::get('/listAllPetsCasesAR', [PetARController::class, 'ListAllPetsCasesAR']);
 Route::post('/addPetsCaseAR', [PetARController::class, 'addPetsCaseAR']);
 Route::get('/getPetsCaseByIDAR', [PetARController::class, 'getPetsCaseByIDAR']);
-Route::get('/getPetsCaseByNameAR', [PetARController::class, 'getPetsCaseByNameAR']);
 Route::put('/updatePetsCaseAR', [PetARController::class, 'updatePetsCaseAR']);
 Route::delete('/deletePetsCaseAR', [PetARController::class, 'deletePetsCaseAR']);
 

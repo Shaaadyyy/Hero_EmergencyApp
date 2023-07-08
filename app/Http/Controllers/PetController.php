@@ -46,23 +46,6 @@ class PetController extends Controller
         }
     }
 
-    public function getPetsCaseByName(Request $request)
-    {
-        $case = $request->petsCase_name;
-        $case_lowercase = strtolower($case);
-        $caseName = ucwords($case_lowercase);
-
-        $exist = Pet::where('caseName', $caseName)->first();
-        if($exist)
-        {
-            $arr = array($exist);
-            return $this->returnData('emergencyCases', $arr, 'Pets case is found');
-        } else
-        {
-            return $this->returnError('001', 'Pets case is not found');
-        }
-    }
-
     public function getPetsCaseByID(Request $request)
     {
         $case = Pet::find($request->id);

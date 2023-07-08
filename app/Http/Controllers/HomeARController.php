@@ -47,21 +47,6 @@ class HomeARController extends Controller
         }
     }
 
-    public function getHomeCaseByNameAR(Request $request)
-    {
-        $caseName = $request->homeCase_name;
-
-        $exist = Home_AR::where('caseName', $caseName)->first();
-        if($exist)
-        {
-            $arr = array($exist);
-            return $this->returnData('emergencyCases', $arr, 'Home case is found');
-        } else
-        {
-            return $this->returnError('001', 'Home case is not found');
-        }
-    }
-
     public function getHomeCaseByIDAR(Request $request)
     {
         $case = Home_AR::find($request->id);

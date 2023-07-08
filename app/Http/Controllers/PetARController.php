@@ -47,22 +47,6 @@ class PetARController extends Controller
         }
     }
 
-    public function getPetsCaseByNameAR(Request $request)
-    {
-        $caseName = $request->petsCase_name;
-
-
-        $exist = Pet_AR::where('caseName', $caseName)->first();
-        if($exist)
-        {
-            $arr = array($exist);
-            return $this->returnData('emergencyCases', $arr, 'Pets case is found');
-        } else
-        {
-            return $this->returnError('001', 'Pets case is not found');
-        }
-    }
-
     public function getPetsCaseByIDAR(Request $request)
     {
         $case = Pet_AR::find($request->id);

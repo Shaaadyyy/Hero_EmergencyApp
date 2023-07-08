@@ -39,23 +39,6 @@ class MedicalController extends Controller
         }
     }
 
-    public function getMedicalCaseByName(Request $request)
-    {
-        $case = $request->medicalCase_name;
-        $case_lowercase = strtolower($case);
-        $caseName = ucwords($case_lowercase);
-
-        $exist = Medical::where('caseName', $caseName)->first();
-        if($exist)
-        {
-            $arr = array($exist);
-            return $this->returnData('emergencyCases', $arr, 'Medical case is found');
-        } else
-        {
-            return $this->returnError('001', 'Medical case is not found');
-        }
-    }
-
     public function deleteMedicalCase(Request $request)
     {
         $case = Medical::find($request->id);
