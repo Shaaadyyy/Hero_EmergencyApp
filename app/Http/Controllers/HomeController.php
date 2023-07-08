@@ -146,21 +146,21 @@ class HomeController extends Controller
 
         $caseID = strtoupper($request->case_id);
 
-        $check = Home::where('case_id', $caseID)->first();
-        if($check)
-        {
-            if(!($check->id == $request->id))
-            {
-                return $this->returnError('505', 'You can\'t assign this case id, It\'s assigned to another case');
-            }
-        }
-
         $case = Home::find($request->id);
 
         if(!$case)
             return $this->returnError('002', 'Home case is not found');
         else
         {
+            $check = Home::where('case_id', $caseID)->first();
+            if($check)
+            {
+                if(!($check->id == $request->id))
+                {
+                    return $this->returnError('505', 'You can\'t assign this case id, It\'s assigned to another case');
+                }
+            }
+
             $exist = Home::where('caseName', $homeCase_name)->first();
 
             if($exist)

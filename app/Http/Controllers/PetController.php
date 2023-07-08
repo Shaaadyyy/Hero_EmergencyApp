@@ -143,21 +143,22 @@ class PetController extends Controller
 
         $caseID = strtoupper($request->case_id);
 
-        $check = Pet::where('case_id', $caseID)->first();
-        if($check)
-        {
-            if(!($check->id == $request->id))
-            {
-                return $this->returnError('505', 'You can\'t assign this case id, It\'s assigned to another case');
-            }
-        }
-
         $case = Pet::find($request->id);
 
         if(!$case)
             return $this->returnError('002', 'Pets case is not found');
         else
         {
+
+            $check = Pet::where('case_id', $caseID)->first();
+            if($check)
+            {
+                if(!($check->id == $request->id))
+                {
+                    return $this->returnError('505', 'You can\'t assign this case id, It\'s assigned to another case');
+                }
+            }
+
             $exist = Pet::where('caseName', $petsCase_name)->first();
 
             if($exist)

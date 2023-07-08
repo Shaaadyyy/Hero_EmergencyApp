@@ -150,21 +150,22 @@ class MedicalController extends Controller
 
         $caseID = strtoupper($request->case_id);
 
-        $check = Medical::where('case_id', $caseID)->first();
-        if($check)
-        {
-            if(!($check->id == $request->id))
-            {
-                return $this->returnError('505', 'You can\'t assign this case id, It\'s assigned to another case');
-            }
-        }
-
         $case = Medical::find($request->id);
 
         if(!$case)
             return $this->returnError('002', 'Medical case is not found');
         else
         {
+
+            $check = Medical::where('case_id', $caseID)->first();
+            if($check)
+            {
+                if(!($check->id == $request->id))
+                {
+                    return $this->returnError('505', 'You can\'t assign this case id, It\'s assigned to another case');
+                }
+            }
+
             $exist = Medical::where('caseName', $medicalCase_name)->first();
 
             if($exist)
