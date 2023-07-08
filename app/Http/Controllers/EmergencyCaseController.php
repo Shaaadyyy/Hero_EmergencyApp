@@ -38,7 +38,14 @@ class EmergencyCaseController extends Controller
         }
 
         if(empty($arr))
-            return $this->returnData('emergencyCases', $arr, 'No emergency case found');
+        {
+            return response()->json([
+                'status' => false,
+                'errNum' => "S011",
+                'msg' => 'No emergency cases found',
+                'emergencyCases' => $arr
+            ]);
+        }
 
         return $this->returnData('emergencyCases', $arr, 'Emergency cases are found');
     }
@@ -66,7 +73,14 @@ class EmergencyCaseController extends Controller
         }
 
         if(empty($arr))
-            return $this->returnData('emergencyCases', $arr, 'No emergency case found');
+        {
+            return response()->json([
+                'status' => false,
+                'errNum' => "S011",
+                'msg' => 'No emergency cases found',
+                'emergencyCases' => $arr
+            ]);
+        }
 
         return $this->returnData('emergencyCases', $arr, 'Emergency cases are found');
     }
