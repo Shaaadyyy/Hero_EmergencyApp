@@ -9,8 +9,27 @@ Hero contains various features as:
 * User can chat with chatbot via text ot voice(Speech-To-Text) to identify the emergency case and provide the appropriate steps. Chatbot response also can be in the form of text or voice(TTS).
 
 
-**Project's backend**
+## Project's backend
 
 
-Hero 
+Laravel is the backend technology that we use to build our application. Our backend project is implemented using the MVC pattern.
+
+### Our backend contains 8 tables:
+* Emergency number table
+* Category table
+* Medical
+* Home
+* Pets
+* Arabic medical
+* Arabic home
+* Arabic pets
+
+English and arabic categories tables are connected with the category table with One-to-Many relation, while the three english categories are connected with their equivalent arabic tables with One-to-One relation.
+
+### Logic of the backend
+* Storing english and arabic emergency cases in database. (case name, description, solution, image, video)
+* Retrieving english and arabic emergency cases from database.
+* Deleting english and arabic emergency cases.
+* List all emergency cases.
+* List specific case.
 
